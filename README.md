@@ -1,3 +1,6 @@
+# Changes to This Fork 
+This fork aims to provide the extra services to the Steam client such as Steam economy and Microtransactions.
+
 # Steam
 
 This package provides an easy way to get details from the steam api service.  The services it can access are:
