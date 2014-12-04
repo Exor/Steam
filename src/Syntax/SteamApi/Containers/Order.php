@@ -1,31 +1,38 @@
 <?php namespace Syntax\SteamApi\Containers;
 
+use Syntax\SteamApi\Collection;
+
 class Order {
 	public $orderId;
 
-	public $appId;
+	public $transactionId;
 
-	public $language;
+	public $steamId;
+
+	public $status;
 
 	public $currency;
 
-	public $itemId;
+	public $time
 
-	public $amount;
+	public $country
 
-	public $itemDescription;
+	public $usState
 
-	public $itemCategory;
+	public $items
+
 
 	public function __construct($order)
 	{
-		$this->orderId     		= $order->orderId;
-		$this->appId    		= $order->appId;
-		$this->language        	= $order->language;
+		$this->orderId     		= $order->orderid;
+		$this->transactionId    = $order->transid;
+		$this->steamId     		= $order->steamid;
+		$this->status     		= $order->status;
 		$this->currency 		= $order->currency;
-		$this->itemId 			= $order->itemId;
-		$this->amount 			= $order->amount;
-		$this->itemDescription 	= $order->itemDescription;
-		$this->itemCategory 	= $order->itemCategory;
+		$this->time 			= $order->time;
+		$this->country 			= $order->country;
+		$this->usState 			= $order->usstate;
+		$this->items 			= new Collection($order->items);
+
 	}
 }
