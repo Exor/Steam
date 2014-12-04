@@ -26,6 +26,8 @@ class Client {
 
 	protected $isService    = false;
 
+	protected $request	= 'GET';
+
 	public    $validFormats = array('json', 'xml', 'vdf');
 
 	public function __construct()
@@ -89,11 +91,19 @@ class Client {
 			$parameters = array_merge($parameters, $arguments);
 		}
 
-		// Build the query string
-		$parameters = http_build_query($parameters);
+		if ($request == "POST")
+		{
+			$request = $this->client->post($steamUrl);
+			$request->setBody($arguments);
+		}
+		else
+		{
+			// Build the query string
+			$parameters = http_build_query($parameters);
+			$request  = $this->client->get($steamUrl . '?' . $parameters);
+		}
 
 		// Send the request and get the results
-		$request  = $this->client->get($steamUrl . '?' . $parameters);
 		$response = $this->sendRequest($request);
 
 		// Pass the results back

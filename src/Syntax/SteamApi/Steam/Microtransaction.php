@@ -42,11 +42,10 @@ class Microtransaction extends Client {
 	 */
 	public function InitTxn($orderId, $steamId, $appId, $itemCount, $language, $currency, $usersession = client, $ipAddress = null, $items)
 	{
-		//TODO Verify this is a POST request
-
 		// Set up the api details
 		$this->method     = __FUNCTION__;
 		$this->version    = 'v0002';
+		$this->request    = 'POST';
 
 		// Set up the arguments
 		$arguments = [
@@ -75,11 +74,10 @@ class Microtransaction extends Client {
 	 */
 	public function FinalizeTxn($orderId, $appId)
 	{
-		//TODO Verify this is a POST request
-
 		// Set up the api details
 		$this->method     = __FUNCTION__;
 		$this->version    = 'v0001';
+		$this->request    = 'POST';
 
 		// Set up the arguments
 		$arguments = [
@@ -128,6 +126,7 @@ class Microtransaction extends Client {
 		// Set up the api details
 		$this->method     = __FUNCTION__;
 		$this->version    = 'v0001';
+		$this->request    = 'POST';
 
 		// Set up the arguments
 		$arguments = [
