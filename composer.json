@@ -14,9 +14,16 @@
         "laravel/framework": "4.2.*",
         "guzzle/guzzle": "3.9.2"
     },
+    "require-dev": {
+        "phpunit/phpunit": "4.4.*",
+        "mockery/mockery": "0.9.*",
+        "orchestra/testbench": "2.2.*",
+        "squizlabs/php_codesniffer": "2.*"
+    },    
     "autoload": {
         "classmap": [
-            "src/models"
+            "src/models",
+            "tests/TestCase.php"
         ],
         "psr-0": {
             "Syntax\\SteamApi\\": "src/"
