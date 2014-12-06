@@ -31,9 +31,13 @@ Once that is finished, add the service provider to `app/config/app.php`
 
 > The alias to Steam is already handled by the package.
 
-Lastly, publish the config file.  You can get your API key from [Steam](http://steamcommunity.com/dev/apikey)
+Publish the config file.  You can get your API key from [Steam](http://steamcommunity.com/dev/apikey)
 
 	php artisan config:publish syntax/steam-api
+
+Run the migrations.
+
+	php artisan migrate --package="syntax/steam-api"
 
 ## Usage
 
