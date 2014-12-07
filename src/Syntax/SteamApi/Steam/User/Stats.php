@@ -1,6 +1,7 @@
 <?php namespace Syntax\SteamApi\Steam\User;
 
 use Syntax\SteamApi\Client;
+use Syntax\SteamApi\Collection;
 use Syntax\SteamApi\Containers\Achievement;
 
 class Stats extends Client {
@@ -73,10 +74,10 @@ class Stats extends Client {
 
 	protected function convertToObjects($achievements)
 	{
-		$cleanedAchievements = array();
+		$cleanedAchievements = new Collection;
 
 		foreach ($achievements as $achievement) {
-			$cleanedAchievements[] = new Achievement($achievement);
+			$cleanedAchievements->add(new Achievement($achievement));
 		}
 
 		return $cleanedAchievements;

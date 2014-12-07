@@ -213,7 +213,7 @@ appId| int | The id of the game you want the user's achievements in | Yes |
 > Example Output: [GetGlobalAchievementPercentagesForApp](./examples/user/stats/GetGlobalAchievementPercentagesForApp.txt)
 
 #### GetUserStatsForGame
-Returns a list of achievements for this user by app id.
+Returns a list of achievements that the user has completed for this user by app id.
 
 ##### Arguments
 
@@ -252,3 +252,4 @@ This method will return an array of app objects directly from steam.  It include
 # TODO
 * Add container for news items
 * Add container for player badges
+* Change achievement stats from array to collection Stats/GetGlobalAchievementPercentagesForApp
