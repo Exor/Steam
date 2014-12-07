@@ -45,7 +45,7 @@ class Microtransaction extends Client {
 		// Set up the api details
 		$this->method     = __FUNCTION__;
 		$this->version    = 'v0002';
-		$this->request    = 'POST';
+		$this->httpVerb   = 'POST';
 
 		// Set up the arguments
 		$arguments = [
@@ -77,7 +77,7 @@ class Microtransaction extends Client {
 		// Set up the api details
 		$this->method     = __FUNCTION__;
 		$this->version    = 'v0001';
-		$this->request    = 'POST';
+		$this->httpVerb    = 'POST';
 
 		// Set up the arguments
 		$arguments = [
@@ -126,7 +126,7 @@ class Microtransaction extends Client {
 		// Set up the api details
 		$this->method     = __FUNCTION__;
 		$this->version    = 'v0001';
-		$this->request    = 'POST';
+		$this->httpVerb    = 'POST';
 
 		// Set up the arguments
 		$arguments = [

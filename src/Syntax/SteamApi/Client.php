@@ -26,7 +26,7 @@ class Client {
 
 	protected $isService    = false;
 
-	protected $request	= 'GET';
+	protected $httpVerb	= 'GET';
 
 	public    $validFormats = array('json', 'xml', 'vdf');
 
@@ -91,7 +91,7 @@ class Client {
 			$parameters = array_merge($parameters, $arguments);
 		}
 
-		if ($request == "POST")
+		if ($this->httpVerb == "POST")
 		{
 			$request = $this->client->post($steamUrl);
 			$request->setBody($arguments);
