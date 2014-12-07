@@ -1,10 +1,10 @@
-<?php namespace Syntax\SteamApi\Steam\User;
+<?php namespace Syntax\SteamApi\Steam;
 
 use Syntax\SteamApi\Client;
 use Syntax\SteamApi\Collection;
 use Syntax\SteamApi\Containers\Achievement;
 
-class Stats extends Client {
+class UserStats extends Client {
 
 	public function __construct($steamId)
 	{

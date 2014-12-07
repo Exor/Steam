@@ -1,6 +1,6 @@
-<?php namespace Syntax\SteamApi\Containers\Player;
+<?php namespace Syntax\SteamApi\Containers;
 
-class Level {
+class PlayerLevel {
 	public $playerXp;
 
 	public $playerLevel;

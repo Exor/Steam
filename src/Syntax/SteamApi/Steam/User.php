@@ -1,7 +1,8 @@
 <?php namespace Syntax\SteamApi\Steam;
 
 use Syntax\SteamApi\Client;
-use Syntax\SteamApi\Containers\Player;
+use Syntax\SteamApi\Collection;
+use Syntax\SteamApi\Containers\Player as PlayerContainer;
 
 class User extends Client {
 
@@ -30,7 +31,7 @@ class User extends Client {
 		// Get the client
 		$client = $this->setUpClient($arguments)->response;
 
-		// Clean up the games
+		// Clean up the players
 		$players = $this->convertToObjects($client->players);
 
 		return $players;
@@ -51,7 +52,7 @@ class User extends Client {
 		// Get the client
 		$client = $this->setUpClient($arguments)->friendslist;
 
-		// Clean up the games
+		// Fill out the friends list
 		$steamIds = array();
 
 		foreach ($client->friends as $friend) {
@@ -60,15 +61,18 @@ class User extends Client {
 
 		$friends = $this->GetPlayerSummaries(implode(',', $steamIds));
 
+		// Clean up the friends
+		//$friends = $this->convertToObjects($client->friends);		
+
 		return $friends;
 	}
 
 	protected function convertToObjects($players)
 	{
-		$cleanedPlayers = array();
+		$cleanedPlayers = new Collection;
 
 		foreach ($players as $player) {
-			$cleanedPlayers[] = new Player($player);
+			$cleanedPlayers->add(new PlayerContainer($player));
 		}
 
 		return $cleanedPlayers;

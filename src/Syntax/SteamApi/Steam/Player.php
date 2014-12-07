@@ -3,7 +3,7 @@
 use Syntax\SteamApi\Client;
 use Syntax\SteamApi\Collection;
 use Syntax\SteamApi\Containers\Game;
-use Syntax\SteamApi\Containers\Player\Level;
+use Syntax\SteamApi\Containers\PlayerLevel;
 
 class Player extends Client {
 
@@ -44,7 +44,7 @@ class Player extends Client {
 		// Get the client
 		$client = $this->setUpService($arguments)->response;
 
-		$details = new Level($client);
+		$details = new PlayerLevel($client);
 
 		return $details;
 	}
