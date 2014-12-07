@@ -247,3 +247,8 @@ appIds| int[] | The ids of the games you want details for | Yes |
 This method will return an array of app objects directly from steam.  It includes the appId and the app name.
 
 > Example Output: [GetAppList](./examples/app/GetAppList.txt)
+
+
+# TODO
+* Add container for news items
+* Add container for player badges

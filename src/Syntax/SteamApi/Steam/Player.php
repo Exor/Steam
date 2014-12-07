@@ -33,9 +33,18 @@ class Player extends Client {
 
 	public function GetPlayerLevelDetails()
 	{
-		$details = $this->GetBadges();
+		// Set up the api details
+		$this->method  = 'GetBadges';
+		$this->version = 'v0001';
 
-		$details = new Level($details);
+		// Set up the arguments
+		$arguments = ['steamId' => $this->steamId];
+		$arguments = json_encode($arguments);
+
+		// Get the client
+		$client = $this->setUpService($arguments)->response;
+
+		$details = new Level($client);
 
 		return $details;
 	}
@@ -53,7 +62,7 @@ class Player extends Client {
 		// Get the client
 		$client = $this->setUpService($arguments)->response;
 
-		return $client;
+		return $client->badges;
 	}
 
 	public function GetCommunityBadgeProgress($badgeId = null)
@@ -70,7 +79,7 @@ class Player extends Client {
 		// Get the client
 		$client = $this->setUpService($arguments)->response;
 
-		return $client;
+		return $client->quests;
 	}
 
 	public function GetOwnedGames($includeAppInfo = true, $includePlayedFreeGames = false, $appIdsFilter = array())

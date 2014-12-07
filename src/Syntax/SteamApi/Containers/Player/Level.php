@@ -15,6 +15,8 @@ class Level {
 
 	public $percentThroughLevel;
 
+	public $percentToNextLevel;
+
 	public function __construct($levelDetails)
 	{
 		$this->playerXp          = $levelDetails->player_xp;
@@ -27,7 +29,8 @@ class Level {
 
 		$levelRange = $this->currentLevelCeieling - $this->currentLevelFloor;
 
-		$this->percentThroughLevel = $this->percent($this->xpToLevelUp, $levelRange);
+		$this->percentToNextLevel = $this->percent($this->xpToLevelUp, $levelRange);
+		$this->percentThroughLevel = 100 - $this->percentToNextLevel;
 	}
 
 	private function percent ($num_amount, $num_total)
