@@ -18,9 +18,6 @@ abstract class TestCase extends Orchestra\Testbench\TestCase {
     {
         parent::setUp();
 
-        // Your code here
+        // Global setup code here
     }
-
-
-
 }

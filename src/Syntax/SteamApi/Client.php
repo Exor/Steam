@@ -10,7 +10,7 @@ use Syntax\SteamApi\Exceptions\ClassNotFoundException;
 
 class Client {
 
-	protected $url          = 'http://api.steampowered.com/';
+	protected $url          = 'https://api.steampowered.com/';
 
 	protected $interface;
 
@@ -93,8 +93,9 @@ class Client {
 
 		if ($this->httpVerb == "POST")
 		{
-			$request = $this->client->post($steamUrl);
-			$request->setBody($arguments);
+			//$request = $this->client->post($steamUrl);
+			$request = $this->client->createRequest('POST', $steamUrl);
+			$request->setBody($parameters);
 		}
 		else
 		{

@@ -9,10 +9,13 @@ use Syntax\SteamApi\Exceptions\ApiArgumentRequired;
  */
 class Microtransaction extends Client {
 
-	public function __construct()
+	public function __construct($isTest)
 	{
 		parent::__construct();
-		$this->interface = 'ISteamMicroTxn';
+		if ($isTest==true)
+			{$this->interface = 'ISteamMicroTxnSandbox';}
+		else
+			{$this->interface = 'ISteamMicroTxn';}
 	}
 
 	/**
@@ -40,7 +43,7 @@ class Microtransaction extends Client {
 	 * Creates a new purchase.
 	 * Send the order information along with the SteamID to seed the transaction on Steam.
 	 */
-	public function InitTxn($orderId, $steamId, $appId, $itemCount, $language, $currency, $usersession = client, $ipAddress = null, $items)
+	public function InitTxn($orderId, $steamId, $appId, $itemCount, $language, $currency, $items, $usersession = 'client', $ipAddress = null)
 	{
 		// Set up the api details
 		$this->method     = __FUNCTION__;
@@ -49,18 +52,27 @@ class Microtransaction extends Client {
 
 		// Set up the arguments
 		$arguments = [
-			'steamid' => $steamId,
+			'orderid' 	=> $orderId,
+			'steamid' 	=> $steamId,
+			'appid' 	=> $appId,
+			'itemcount'	=> $itemCount,
+			'language'	=> $language,
+			'currency'	=> $currency,
+			'usersession' => $usersession,
 			'ipaddress' => $ipAddress
 		];
 
 		//TODO Verify this works
-		for($i = 0; $i < $items->count; $i++)
+		for($i = 0; $i < $items->count(); $i++)
 		{
-			$arguments['itemid['.$i.']'] = $items[$i]->itemId;
-			$arguments['qty['.$i.']'] = $items[$i]->quantity;
-			$arguments['amount['.$i.']'] = $items[$i]->amount;
-			$arguments['description['.$i.']'] = $items[$i]->description;
-			$arguments['category['.$i.']'] = $items[$i]->category;
+			$item = [
+				'itemid['.$i.']' => $items[$i]->itemId,
+				'qty['.$i.']' 	=> $items[$i]->quantity,
+				'amount['.$i.']' => $items[$i]->amount,
+				'description['.$i.']' => $items[$i]->description,
+				'category['.$i.']' => $items[$i]->category
+			];
+			$arguments = array_merge($arguments, $item);
 		}
 
 		// Get the client

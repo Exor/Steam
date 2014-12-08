@@ -13,10 +13,10 @@ class Item {
 
 	public function __construct($item)
 	{
-		$this->itemId 		= $order->itemid;
-		$this->quantity 	= $order->qty;
-		$this->amount 		= $order->amount;
-		$this->description 	= $order->description;
-		$this->category 	= $order->category;
+		$this->itemId 		= $item->itemid;
+		$this->quantity 	= $item->qty;
+		$this->amount 		= $item->amount;
+		$this->description 	= $item->description;
+		$this->category 	= $item->category;
 	}
 }
