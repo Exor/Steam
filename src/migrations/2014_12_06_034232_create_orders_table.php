@@ -24,6 +24,11 @@ class CreateOrdersTable extends Migration {
 		    $table->string('country', 2);
 		    $table->string('usstate', 2);		    
 	    });
+
+	    Schema::create('steamapi_items', function($table)
+	    {
+			$table->bigIncrements('id');	    
+	    });	    
 	}
 
 	/**
