@@ -23,6 +23,8 @@
     "autoload": {
         "classmap": [
             "src/models",
+            "src/migrations",
+            "src/controllers",
             "tests/TestCase.php"
         ],
         "psr-0": {
