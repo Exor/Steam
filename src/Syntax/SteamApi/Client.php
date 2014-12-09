@@ -93,8 +93,7 @@ class Client {
 
 		if ($this->httpVerb == "POST")
 		{
-			//$request = $this->client->post($steamUrl);
-			$request = $this->client->createRequest('POST', $steamUrl);
+			$request = $this->client->post($steamUrl, ['Content-Type' => 'application/x-www-form-urlencoded']);
 			$request->setBody($parameters);
 		}
 		else
@@ -128,10 +127,10 @@ class Client {
 			$result->body = json_decode($response->getBody(true));
 
 		} catch (ClientErrorResponseException $e) {
-			throw new ApiCallFailedException($e->getMessage(), $e->getResponse()->getStatusCode(), $e);
+			throw new ApiCallFailedException($e->getResponse() . $e->getRequest(), $e->getResponse()->getStatusCode(), $e);
 
 		} catch (ServerErrorResponseException $e) {
-			throw new ApiCallFailedException('Api call failed to complete due to a server error.', $e->getResponse()->getStatusCode(), $e);
+			throw new ApiCallFailedException('Api call failed to complete due to a server error.' . $e->getResponse() . $e->getRequest(), $e->getResponse()->getStatusCode(), $e);
 
 		} catch (Exception $e) {
 			throw new ApiCallFailedException($e->getMessage(), $e->getCode(), $e);

@@ -62,7 +62,7 @@ class Microtransaction extends Client {
 			'ipaddress' => $ipAddress
 		];
 
-		//TODO Verify this works
+		//Set the item array
 		for($i = 0; $i < $items->count(); $i++)
 		{
 			$item = [
