@@ -1,11 +1,11 @@
 {
-    "name": "syntax/steam-api",
+    "name": "abyssalarts/steam-api",
     "description": "A steam-api client for Laravel 4.",
     "license": "MIT",
     "authors": [
         {
-            "name": "Stygian",
-            "email": "stygian.warlock.v2@gmail.com"
+            "name": "AbyssalArts",
+            "email": "jon@abyssalarts.com"
         }
     ],
     "require": {

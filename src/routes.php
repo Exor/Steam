@@ -22,3 +22,6 @@ Route::get('assetapi/GetAssetPrices/v0001', 'Syntax\SteamApi\Controllers\WebPurc
 
 //Foreign Assets
 Route::get('assetapi/GetExportedAssets/v0001', 'Syntax\SteamApi\Controllers\ForeignAssetsController@GetExportedAssets');
+
+//Microtransactions
+Route::post('beginMicrotransaction', 'Syntax\SteamApi\Controllers\MicrotransactionController@StartMicrotransaction');
