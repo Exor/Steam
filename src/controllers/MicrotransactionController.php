@@ -23,11 +23,12 @@ class MicrotransactionController extends \Controller {
 		if ($response->result == 'OK')
 		{
 			//success
+			return json_decode($response);
 		}
 		else
 		{
 			//failure
+			return $response->error->errorcode . ": " . $response->error->errordesc;
 		}
-		App::abort(404);
 	}
 }
