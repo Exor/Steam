@@ -1,4 +1,4 @@
-<?php namespace Syntax\SteamApi\Controllers;
+<?php namespace AbyssalArts\SteamApi\Controllers;
 
 class ForeignAssetsController extends \Controller {
 

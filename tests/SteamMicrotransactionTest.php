@@ -1,6 +1,6 @@
 <?php
-use Syntax\SteamApi\Containers\Item;
-use Syntax\SteamApi\Collection;
+use AbyssalArts\SteamApi\Containers\Item;
+use AbyssalArts\SteamApi\Collection;
 
 class MicrotransactionTest extends TestCase {
 

@@ -28,7 +28,7 @@
             "tests/TestCase.php"
         ],
         "psr-0": {
-            "Syntax\\SteamApi\\": "src/"
+            "AbyssalArts\\SteamApi\\": "src/"
         }
     },
     "extra": {

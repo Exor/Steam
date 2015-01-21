@@ -1,8 +1,8 @@
-Syntax\SteamApi\Collection Object
+AbyssalArts\SteamApi\Collection Object
 (
     [items:protected] => Array
         (
-            [104] => Syntax\SteamApi\Containers\Game Object
+            [104] => AbyssalArts\SteamApi\Containers\Game Object
                 (
                     [appId] => 251570
                     [name] => 7 Days to Die
@@ -15,7 +15,7 @@ Syntax\SteamApi\Collection Object
                     [hasCommunityVisibleStats] => 1
                 )
 
-            [32] => Syntax\SteamApi\Containers\Game Object
+            [32] => AbyssalArts\SteamApi\Containers\Game Object
                 (
                     [appId] => 22650
                     [name] => Alien Breed 2: Assault
@@ -28,7 +28,7 @@ Syntax\SteamApi\Collection Object
                     [hasCommunityVisibleStats] => 1
                 )
 
-            [33] => Syntax\SteamApi\Containers\Game Object
+            [33] => AbyssalArts\SteamApi\Containers\Game Object
                 (
                     [appId] => 22670
                     [name] => Alien Breed 3: Descent
@@ -41,7 +41,7 @@ Syntax\SteamApi\Collection Object
                     [hasCommunityVisibleStats] => 1
                 )
 
-            [31] => Syntax\SteamApi\Containers\Game Object
+            [31] => AbyssalArts\SteamApi\Containers\Game Object
                 (
                     [appId] => 22610
                     [name] => Alien Breed: Impact

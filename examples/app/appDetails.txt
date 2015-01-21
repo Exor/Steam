@@ -1,6 +1,6 @@
 Array
         (
-            [0] => Syntax\SteamApi\Containers\App Object
+            [0] => AbyssalArts\SteamApi\Containers\App Object
                 (
                     [id] => 620
                     [name] => Portal 2
@@ -15,7 +15,7 @@ Array
                         )
 
                     [legal] => None
-                    [developers] => Syntax\SteamApi\Collection Object
+                    [developers] => AbyssalArts\SteamApi\Collection Object
                         (
                             [items:protected] => Array
                                 (
@@ -24,7 +24,7 @@ Array
 
                         )
 
-                    [publishers] => Syntax\SteamApi\Collection Object
+                    [publishers] => AbyssalArts\SteamApi\Collection Object
                         (
                             [items:protected] => Array
                                 (
@@ -54,7 +54,7 @@ Array
                             [url] => http://www.metacritic.com/game/pc/portal-2
                         )
 
-                    [categories] => Syntax\SteamApi\Collection Object
+                    [categories] => AbyssalArts\SteamApi\Collection Object
                         (
                             [items:protected] => Array
                                 (
@@ -128,7 +128,7 @@ Array
 
                         )
 
-                    [genres] => Syntax\SteamApi\Collection Object
+                    [genres] => AbyssalArts\SteamApi\Collection Object
                         (
                             [items:protected] => Array
                                 (

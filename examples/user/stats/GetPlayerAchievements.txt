@@ -1,6 +1,6 @@
 Array
 (
-    [0] => Syntax\SteamApi\Containers\Achievement Object
+    [0] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => slayer
             [achieved] => 0
@@ -8,7 +8,7 @@ Array
             [description] => Kill 50000 Monsters
         )
 
-    [1] => Syntax\SteamApi\Containers\Achievement Object
+    [1] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => eating_off_the_floor
             [achieved] => 0
@@ -16,7 +16,7 @@ Array
             [description] => Destroy the Food 500 Times
         )
 
-    [2] => Syntax\SteamApi\Containers\Achievement Object
+    [2] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => dropper_of_treasure
             [achieved] => 0
@@ -24,7 +24,7 @@ Array
             [description] => Drop the Crown 200 Times
         )
 
-    [3] => Syntax\SteamApi\Containers\Achievement Object
+    [3] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => as_luck_would_have_it
             [achieved] => 0
@@ -32,7 +32,7 @@ Array
             [description] => Destroy 800 Props
         )
 
-    [4] => Syntax\SteamApi\Containers\Achievement Object
+    [4] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => formidable_fortune
             [achieved] => 0
@@ -40,7 +40,7 @@ Array
             [description] => Destroy 5000 Props
         )
 
-    [5] => Syntax\SteamApi\Containers\Achievement Object
+    [5] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => heroic_hunger
             [achieved] => 0
@@ -48,7 +48,7 @@ Array
             [description] => Eat food equal to 6000 health in total
         )
 
-    [6] => Syntax\SteamApi\Containers\Achievement Object
+    [6] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => dying_for_a_living
             [achieved] => 0
@@ -56,7 +56,7 @@ Array
             [description] => Die 100 Times
         )
 
-    [7] => Syntax\SteamApi\Containers\Achievement Object
+    [7] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => deader_than_dead
             [achieved] => 0
@@ -64,7 +64,7 @@ Array
             [description] => Die 8 Times in one session on a single Floor
         )
 
-    [8] => Syntax\SteamApi\Containers\Achievement Object
+    [8] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => icy_tomb
             [achieved] => 0
@@ -72,7 +72,7 @@ Array
             [description] => Die while Frozen
         )
 
-    [9] => Syntax\SteamApi\Containers\Achievement Object
+    [9] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => explosive_exit
             [achieved] => 1
@@ -80,7 +80,7 @@ Array
             [description] => Die from Area Damage
         )
 
-    [10] => Syntax\SteamApi\Containers\Achievement Object
+    [10] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => embracing_the_end
             [achieved] => 0
@@ -88,7 +88,7 @@ Array
             [description] => Die by taking Area Damage from an Explosive Barrel that you are Carrying
         )
 
-    [11] => Syntax\SteamApi\Containers\Achievement Object
+    [11] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => suddenly_skewered
             [achieved] => 1
@@ -96,7 +96,7 @@ Array
             [description] => Die by taking damage from a Spike Trap
         )
 
-    [12] => Syntax\SteamApi\Containers\Achievement Object
+    [12] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => seriously_severed
             [achieved] => 0
@@ -104,7 +104,7 @@ Array
             [description] => Die by taking damage from a Blade Trap
         )
 
-    [13] => Syntax\SteamApi\Containers\Achievement Object
+    [13] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => whirling_death
             [achieved] => 0
@@ -112,7 +112,7 @@ Array
             [description] => Kill 12000 Monsters with Spin Attack - Warrior
         )
 
-    [14] => Syntax\SteamApi\Containers\Achievement Object
+    [14] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => furious_charge
             [achieved] => 0
@@ -120,7 +120,7 @@ Array
             [description] => Tackle 50 Monsters using Rush - Warrior
         )
 
-    [15] => Syntax\SteamApi\Containers\Achievement Object
+    [15] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => hardened_champion
             [achieved] => 0
@@ -128,7 +128,7 @@ Array
             [description] => Take 15000 Cumulative Damage as the Warrior
         )
 
-    [16] => Syntax\SteamApi\Containers\Achievement Object
+    [16] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => bombardier
             [achieved] => 0
@@ -136,7 +136,7 @@ Array
             [description] => Kill 12000 Monsters with Bomb/Bomb Shot - Elf
         )
 
-    [17] => Syntax\SteamApi\Containers\Achievement Object
+    [17] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => precision_strike
             [achieved] => 0
@@ -144,7 +144,7 @@ Array
             [description] => Kill 50 Monsters with Bomb or Sniper Shot - Elf
         )
 
-    [18] => Syntax\SteamApi\Containers\Achievement Object
+    [18] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => artful_dodger
             [achieved] => 0
@@ -152,7 +152,7 @@ Array
             [description] => Take 10000 Cumulative Damage as the Elf
         )
 
-    [19] => Syntax\SteamApi\Containers\Achievement Object
+    [19] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => the_captains_special
             [achieved] => 0
@@ -160,7 +160,7 @@ Array
             [description] => Kill 12000 Monsters with Shield Throw - Valkyrie
         )
 
-    [20] => Syntax\SteamApi\Containers\Achievement Object
+    [20] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => eye_for_an_eye
             [achieved] => 0
@@ -168,7 +168,7 @@ Array
             [description] => Block 10 projectiles with Shield Block - Valkyrie
         )
 
-    [21] => Syntax\SteamApi\Containers\Achievement Object
+    [21] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => scarred_veteran
             [achieved] => 0
@@ -176,7 +176,7 @@ Array
             [description] => Take 12000 Cumulative Damage as the Valkyrie
         )
 
-    [22] => Syntax\SteamApi\Containers\Achievement Object
+    [22] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => frostweaver
             [achieved] => 0
@@ -184,7 +184,7 @@ Array
             [description] => Kill 8000 Monsters while they are Frozen or Chilled
         )
 
-    [23] => Syntax\SteamApi\Containers\Achievement Object
+    [23] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => pyromancer
             [achieved] => 0
@@ -192,7 +192,7 @@ Array
             [description] => Kill 8000 Monsters with Fire Spells
         )
 
-    [24] => Syntax\SteamApi\Containers\Achievement Object
+    [24] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => stormcaller
             [achieved] => 0
@@ -200,7 +200,7 @@ Array
             [description] => Kill 8000 Monsters with Lightning Spells
         )
 
-    [25] => Syntax\SteamApi\Containers\Achievement Object
+    [25] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => accomplished_master
             [achieved] => 0
@@ -208,7 +208,7 @@ Array
             [description] => Take 10000 Cumulative Damage as the Wizard
         )
 
-    [26] => Syntax\SteamApi\Containers\Achievement Object
+    [26] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => the_undeath_of_khamun
             [achieved] => 1
@@ -216,7 +216,7 @@ Array
             [description] => Kill The Boss of the Crypts
         )
 
-    [27] => Syntax\SteamApi\Containers\Achievement Object
+    [27] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => crypt_kicker
             [achieved] => 0
@@ -224,7 +224,7 @@ Array
             [description] => Complete 1 of the first 3 Crypts Chapters without dying on Unfair
         )
 
-    [28] => Syntax\SteamApi\Containers\Achievement Object
+    [28] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => mummy_slayer
             [achieved] => 0
@@ -232,7 +232,7 @@ Array
             [description] => Kill 15000 Mummies
         )
 
-    [29] => Syntax\SteamApi\Containers\Achievement Object
+    [29] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => skeleton_slayer
             [achieved] => 0
@@ -240,7 +240,7 @@ Array
             [description] => Kill 15000 Skeletons
         )
 
-    [30] => Syntax\SteamApi\Containers\Achievement Object
+    [30] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => lich_slayer
             [achieved] => 0
@@ -248,7 +248,7 @@ Array
             [description] => Kill 50 Liches
         )
 
-    [31] => Syntax\SteamApi\Containers\Achievement Object
+    [31] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => besting_the_beast_of_orox
             [achieved] => 0
@@ -256,7 +256,7 @@ Array
             [description] => Kill The Boss of the Caves
         )
 
-    [32] => Syntax\SteamApi\Containers\Achievement Object
+    [32] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => cave_crusher
             [achieved] => 0
@@ -264,7 +264,7 @@ Array
             [description] => Complete 1 of the first 3 Caves Chapters without dying on Unfair
         )
 
-    [33] => Syntax\SteamApi\Containers\Achievement Object
+    [33] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => grunt_slayer
             [achieved] => 0
@@ -272,7 +272,7 @@ Array
             [description] => Kill 15000 Grunts
         )
 
-    [34] => Syntax\SteamApi\Containers\Achievement Object
+    [34] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => orc_slayer
             [achieved] => 0
@@ -280,7 +280,7 @@ Array
             [description] => Kill 15000 Orcs
         )
 
-    [35] => Syntax\SteamApi\Containers\Achievement Object
+    [35] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => giant_spider_slayer
             [achieved] => 0
@@ -288,7 +288,7 @@ Array
             [description] => Kill 50 Spider Queens
         )
 
-    [36] => Syntax\SteamApi\Containers\Achievement Object
+    [36] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => morak_defeated
             [achieved] => 0
@@ -296,7 +296,7 @@ Array
             [description] => Kill The Boss of the Temple
         )
 
-    [37] => Syntax\SteamApi\Containers\Achievement Object
+    [37] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => temple_toppler
             [achieved] => 0
@@ -304,7 +304,7 @@ Array
             [description] => Complete 1 of the first 3 Temple Chapters without dying on Unfair
         )
 
-    [38] => Syntax\SteamApi\Containers\Achievement Object
+    [38] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => cultist_slayer
             [achieved] => 0
@@ -312,7 +312,7 @@ Array
             [description] => Kill 15000 Cultists
         )
 
-    [39] => Syntax\SteamApi\Containers\Achievement Object
+    [39] => AbyssalArts\SteamApi\Containers\Achievement Object
         (
             [apiName] => demon_slayer
             [achieved] => 0

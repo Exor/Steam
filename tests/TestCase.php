@@ -4,13 +4,13 @@ abstract class TestCase extends Orchestra\Testbench\TestCase {
 
     protected function getPackageProviders()
     {
-        return array('Syntax\SteamApi\SteamApiServiceProvider');
+        return array('AbyssalArts\SteamApi\SteamApiServiceProvider');
     }
 
     protected function getPackageAliases()
     {
         return array(
-            'SteamApi' => 'Syntax\SteamApi\Facades\SteamApi'
+            'SteamApi' => 'AbyssalArts\SteamApi\Facades\SteamApi'
         );
     }
 

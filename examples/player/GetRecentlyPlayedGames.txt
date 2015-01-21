@@ -1,8 +1,8 @@
-Syntax\SteamApi\Collection Object
+AbyssalArts\SteamApi\Collection Object
 (
     [items:protected] => Array
         (
-            [3] => Syntax\SteamApi\Containers\Game Object
+            [3] => AbyssalArts\SteamApi\Containers\Game Object
                 (
                     [appId] => 214490
                     [name] => Alien: Isolation
@@ -15,7 +15,7 @@ Syntax\SteamApi\Collection Object
                     [hasCommunityVisibleStats] => 0
                 )
 
-            [1] => Syntax\SteamApi\Containers\Game Object
+            [1] => AbyssalArts\SteamApi\Containers\Game Object
                 (
                     [appId] => 258970
                     [name] => Gauntletâ„¢
@@ -28,7 +28,7 @@ Syntax\SteamApi\Collection Object
                     [hasCommunityVisibleStats] => 0
                 )
 
-            [4] => Syntax\SteamApi\Containers\Game Object
+            [4] => AbyssalArts\SteamApi\Containers\Game Object
                 (
                     [appId] => 249130
                     [name] => LEGO MARVEL Super Heroes
@@ -41,7 +41,7 @@ Syntax\SteamApi\Collection Object
                     [hasCommunityVisibleStats] => 0
                 )
 
-            [2] => Syntax\SteamApi\Containers\Game Object
+            [2] => AbyssalArts\SteamApi\Containers\Game Object
                 (
                     [appId] => 241930
                     [name] => Middle-earth: Shadow of Mordor
@@ -54,7 +54,7 @@ Syntax\SteamApi\Collection Object
                     [hasCommunityVisibleStats] => 0
                 )
 
-            [0] => Syntax\SteamApi\Containers\Game Object
+            [0] => AbyssalArts\SteamApi\Containers\Game Object
                 (
                     [appId] => 221680
                     [name] => Rocksmith 2014

@@ -16,28 +16,28 @@ This package provides an easy way to get details from the steam api service.  Th
 Begin by installing this package with composer.
 
 	"require": {
-		"syntax/steam-api": "dev-master"
+		"abyssalarts/steam-api": "dev-master"
 	}
 
 Next, update composer from the terminal.
 
-	composer update syntax/steam-api
+	composer update abyssalarts/steam-api
 
-> Alternately, you can run "composer require syntax/steam-api:dev-master" from the command line.
+> Alternately, you can run "composer require abyssalarts/steam-api:dev-master" from the command line.
 
 Once that is finished, add the service provider to `app/config/app.php`
 
-	'Syntax\SteamApi\SteamApiServiceProvider',
+	'AbyssalArts\SteamApi\SteamApiServiceProvider',
 
 > The alias to Steam is already handled by the package.
 
 Publish the config file.  You can get your API key from [Steam](http://steamcommunity.com/dev/apikey)
 
-	php artisan config:publish syntax/steam-api
+	php artisan config:publish abyssalarts/steam-api
 
 Run the migrations.
 
-	php artisan migrate --package="syntax/steam-api"
+	php artisan migrate --package="abyssalarts/steam-api"
 
 ## Usage
 
@@ -93,7 +93,7 @@ This method will return the level of the steam user given.  It simply returns th
 > Example Output: [GetSteamLevel](./examples/player/GetSteamLevel.txt)
 
 #### GetPlayerLevelDetails
-This will return a Syntax\Containers\Player_Level object with full details for the players level. 
+This will return a AbyssalArts\Containers\Player_Level object with full details for the players level. 
 
 
 > Example Output: [GetPlayerLevelDetails](./examples/player/GetPlayerLevelDetails.txt)
