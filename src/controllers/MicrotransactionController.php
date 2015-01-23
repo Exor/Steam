@@ -15,7 +15,7 @@ class MicrotransactionController extends \Controller {
 		//Convert the items list to JSON
 		$items_json = json_decode($items_raw);
 		//Convert the items Json to an item object
-		$item = new \Item((object)['itemid'=>$items_json->{'itemid'}, 'qty'=>$items_json->{'qty'}, 'amount'=>$items_json->{'amount'}, 'description'=>$items_json->{'description'}, 'category'=>$items_json->{'category'});
+		$item = new \Item((object)['itemid'=>$items_json->{'itemid'}, 'qty'=>$items_json->{'qty'}, 'amount'=>$items_json->{'amount'}, 'description'=>$items_json->{'description'}, 'category'=>$items_json->{'category'}]);
 		//add each item to the items list
 		$items = new \Collection();
 		$items->add($item);
@@ -34,12 +34,12 @@ class MicrotransactionController extends \Controller {
 		if ($response->result == 'OK')
 		{
 			//success
-			return json_decode($response);
+			return json_encode($response);
 		}
 		else
 		{
 			//failure
-			return $response->error->errorcode . ": " . $response->error->errordesc;
+			return "Steam error code: " . $response->error->errorcode . "/n Error description: " . $response->error->errordesc;
 		}
 	}
 }
