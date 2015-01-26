@@ -4,11 +4,18 @@ class MicrotransactionController extends \Controller {
 
 	public function StartMicrotransaction()
 	{
-		$microtxn = \Steam::microtransaction(true); //TODO: convert parameter to a config flag for using test database and test steam server
+		$microtxn = \Steam::microtransaction();
 
-		//Parameters
-		$orderId = mt_rand(1000000000, mt_getrandmax()) . mt_rand(1000000000, mt_getrandmax());
-		//TODO: check that this order ID is not in the database first
+		$exists = true;
+		//If order exists in the database, we need a new order id
+		while (!is_null($exists))
+		{
+			$orderId = mt_rand(1000000000, mt_getrandmax()) . mt_rand(1000000000, mt_getrandmax());
+			if (\Config::get('steam-api::testEnvironment'))
+				{$exists = \SteamApi_Order_Test::where('orderid', '=', $orderId);}
+			else
+				{$exists = \SteamApi_Order::where('orderid', '=', $orderId);}
+		}
 
 		$appId = \Config::get('steam-api::appId');
 		$steamId = \Input::get('steamid');
@@ -38,7 +45,10 @@ class MicrotransactionController extends \Controller {
 			//success
 
 			//Save data to the orders table
-			$order = new \Order;
+			if (\Config::get('steam-api::testEnvironment'))
+				{$order = new \SteamApi_Order_Test;}
+			else
+				{$order = new \SteamApi_Order;}
 			$order->orderid = $response->params->orderid;
 			$order->steamid = $steamId;
 			$order->transid = $response->params->transid;
@@ -55,7 +65,7 @@ class MicrotransactionController extends \Controller {
 
 	public function FinishMicrotransaction()
 	{
-		$microtxn = \Steam::microtransaction(true);
+		$microtxn = \Steam::microtransaction();
 
 		$appId = \Config::get('steam-api::appId');
 		$orderId = \Input::get('orderid');

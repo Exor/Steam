@@ -9,10 +9,10 @@ use AbyssalArts\SteamApi\Exceptions\ApiArgumentRequired;
  */
 class Microtransaction extends Client {
 
-	public function __construct($isTest)
+	public function __construct()
 	{
 		parent::__construct();
-		if ($isTest==true)
+		if (\Config::get('steam-api::testEnvironment'))
 			{$this->interface = 'ISteamMicroTxnSandbox';}
 		else
 			{$this->interface = 'ISteamMicroTxn';}

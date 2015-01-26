@@ -1,11 +1,11 @@
 <?php
 
-class SteamApi_Order extends \BaseModel
+class SteamApi_Order_Test extends \BaseModel
 {
 	/********************************************************************
 	 * Declarations
 	 *******************************************************************/
-	protected $table = 'steamapi_orders';
+	protected $table = 'steamapi_orders_test';
 
 	/********************************************************************
 	 * Aware validation rules
