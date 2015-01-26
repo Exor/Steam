@@ -24,4 +24,5 @@ Route::get('assetapi/GetAssetPrices/v0001', 'AbyssalArts\SteamApi\Controllers\We
 Route::get('assetapi/GetExportedAssets/v0001', 'AbyssalArts\SteamApi\Controllers\ForeignAssetsController@GetExportedAssets');
 
 //Microtransactions
-Route::post('startMicrotransaction', 'AbyssalArts\SteamApi\Controllers\MicrotransactionController@StartMicrotransaction');
+Route::post('initTxn', 'AbyssalArts\SteamApi\Controllers\MicrotransactionController@StartMicrotransaction');
+Route::post('finalizeTxn', 'AbyssalArts\SteamApi\Controllers\MicrotransactionController@FinishMicrotransaction');
