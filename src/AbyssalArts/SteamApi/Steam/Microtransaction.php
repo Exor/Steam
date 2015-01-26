@@ -1,6 +1,7 @@
 <?php namespace AbyssalArts\SteamApi\Steam;
 
 use AbyssalArts\SteamApi\Client;
+use AbyssalArts\SteamApi\Exceptions\InvalidAppIdException;
 use AbyssalArts\SteamApi\Exceptions\ApiArgumentRequired;
 
 /**
@@ -9,13 +10,24 @@ use AbyssalArts\SteamApi\Exceptions\ApiArgumentRequired;
  */
 class Microtransaction extends Client {
 
+	protected $appId;
+
 	public function __construct()
 	{
 		parent::__construct();
+
+		//Set the Steam environment URL
 		if (\Config::get('steam-api::testEnvironment'))
 			{$this->interface = 'ISteamMicroTxnSandbox';}
 		else
 			{$this->interface = 'ISteamMicroTxn';}
+
+		//Get the App Id
+		$appId = \Config::get('steam-api::appId');
+		if ($appId == 'YOUR-APP-ID') {
+			throw new InvalidAppIdException();
+		}
+		$this->appId = $appId;
 	}
 
 	/**
@@ -43,7 +55,7 @@ class Microtransaction extends Client {
 	 * Creates a new purchase.
 	 * Send the order information along with the SteamID to seed the transaction on Steam.
 	 */
-	public function InitTxn($orderId, $steamId, $appId, $itemCount, $language, $currency, $items, $usersession = 'client', $ipAddress = null)
+	public function InitTxn($orderId, $steamId, $itemCount, $language, $currency, $items, $usersession = 'client', $ipAddress = null)
 	{
 		// Set up the api details
 		$this->method     = __FUNCTION__;
@@ -54,7 +66,7 @@ class Microtransaction extends Client {
 		$arguments = [
 			'orderid' 	=> $orderId,
 			'steamid' 	=> $steamId,
-			'appid' 	=> $appId,
+			'appid' 	=> $this->appId,
 			'itemcount'	=> $itemCount,
 			'language'	=> $language,
 			'currency'	=> $currency,
@@ -84,7 +96,7 @@ class Microtransaction extends Client {
 	/**
 	 * Completes a purchase that was created by the InitTxn API.
 	 */
-	public function FinalizeTxn($orderId, $appId)
+	public function FinalizeTxn($orderId)
 	{
 		// Set up the api details
 		$this->method     = __FUNCTION__;
@@ -94,7 +106,7 @@ class Microtransaction extends Client {
 		// Set up the arguments
 		$arguments = [
 			'orderid' => $orderId,
-			'appid' => $appId
+			'appid' => $this->appId
 		];
 
 		// Get the client
@@ -107,7 +119,7 @@ class Microtransaction extends Client {
 	 * Query the status of an order.
 	 * Must specify an orderId or transactionId
 	 */
-	public function QueryTxn($appId, $orderId = null, $transactionId = null)
+	public function QueryTxn($orderId = null, $transactionId = null)
 	{
 		// Set up the api details
 		$this->method     = __FUNCTION__;
@@ -115,7 +127,7 @@ class Microtransaction extends Client {
 
 		// Set up the arguments
 		$arguments = [
-			'appid' => $appId,
+			'appid' => $this->appId,
 		];
 		if (!is_null($orderId)) { $arguments['orderid'] = $orderId; }
 		else if (!is_null($transactionId)) { $arguments['transid'] = $transactionId; }
@@ -131,7 +143,7 @@ class Microtransaction extends Client {
 	 * Refund a purchase.
 	 * Refunds can only be made for the full value of the original order.
 	 */
-	public function RefundTxn($orderId, $appId)
+	public function RefundTxn($orderId)
 	{
 		//TODO Verify this is a POST request
 
@@ -143,7 +155,7 @@ class Microtransaction extends Client {
 		// Set up the arguments
 		$arguments = [
 			'orderid' => $orderId,
-			'appid' => $appId
+			'appid' => $this->appId
 		];
 
 		// Get the client
@@ -156,7 +168,7 @@ class Microtransaction extends Client {
 	 * Steam offers transaction reports that can be downloaded for reconciliation purposes. 
 	 * These reports show detailed information about each transaction that affects the settlement of funds into your accounts.
 	 */
-	public function GetReport($appId, $type, $time, $maxResults)
+	public function GetReport($type, $time, $maxResults)
 	{
 		// Set up the api details
 		$this->method     = __FUNCTION__;
@@ -164,7 +176,7 @@ class Microtransaction extends Client {
 
 		// Set up the arguments
 		$arguments = [
-			'appid' => $appId,
+			'appid' => $this->appId,
 			'type' => $type,
 			'time' => $time,
 			'maxresults' => $maxResults

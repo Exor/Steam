@@ -17,7 +17,6 @@ class MicrotransactionController extends \Controller {
 				{$exists = \SteamApi_Order::where('orderid', '=', $orderId);}
 		}
 
-		$appId = \Config::get('steam-api::appId');
 		$steamId = \Input::get('steamid');
 
 		$items_raw = \Input::get('items');
@@ -37,7 +36,7 @@ class MicrotransactionController extends \Controller {
 		
 		//Call ISteamMicroTxn/InitTxn
 		
-		$response = $microtxn->InitTxn($orderId, $steamId, $appId, $itemCount, $language, $currency, $items);
+		$response = $microtxn->InitTxn($orderId, $steamId, $itemCount, $language, $currency, $items);
 		
 		//Output
 		if ($response->result == 'OK')
@@ -67,10 +66,9 @@ class MicrotransactionController extends \Controller {
 	{
 		$microtxn = \Steam::microtransaction();
 
-		$appId = \Config::get('steam-api::appId');
 		$orderId = \Input::get('orderid');
 
-		$response = $microtxn->FinalizeTxn($orderId, $appId);
+		$response = $microtxn->FinalizeTxn($orderId);
 		
 		if ($response->result == 'OK')
 		{

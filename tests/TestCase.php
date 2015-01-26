@@ -18,6 +18,7 @@ abstract class TestCase extends Orchestra\Testbench\TestCase {
     {
         parent::setUp();
 
-        // Global setup code here
+        // Migrate the database
+        Artisan::call('migrate');
     }
 }
