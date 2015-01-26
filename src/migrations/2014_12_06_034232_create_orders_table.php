@@ -20,7 +20,6 @@ class CreateOrdersTable extends Migration {
 		    $table->bigInteger('steamid')->unsigned();
 		    $table->timestamps();
 
-		    $table->primary('id');
 		    $table->unique('orderid');
 		    $table->unique('transid');
 	    });
@@ -33,7 +32,6 @@ class CreateOrdersTable extends Migration {
 		    $table->bigInteger('steamid')->unsigned();
 		    $table->timestamps();
 
-		    $table->primary('id');
 		    $table->unique('orderid');
 		    $table->unique('transid');
 	    });	    
