@@ -1,20 +1,25 @@
 <?php namespace AbyssalArts\SteamApi\Controllers;
 
+use AbyssalArts\SteamApi\Containers\Item;
+use AbyssalArts\SteamApi\Collection;
+
 class MicrotransactionController extends \Controller {
 
 	public function StartMicrotransaction()
 	{
+
 		$microtxn = \Steam::microtransaction();
 
-		$exists = true;
+		$records = 1;
 		//If order exists in the database, we need a new order id
-		while (!is_null($exists))
+		while ($records == 1)
 		{
-			$orderId = mt_rand(1000000000, mt_getrandmax()) . mt_rand(1000000000, mt_getrandmax());
+			$orderId = mt_rand(1000000000, mt_getrandmax()) + mt_rand(1000000000, mt_getrandmax());
+
 			if (\Config::get('steam-api::testEnvironment'))
-				{$exists = \SteamApi_Order_Test::where('orderid', '=', $orderId);}
+				{$records = \SteamApi_Order_Test::where('orderid', $orderId)->count();}
 			else
-				{$exists = \SteamApi_Order::where('orderid', '=', $orderId);}
+				{$records = \SteamApi_Order::where('orderid', $orderId)->count();}
 		}
 
 		$steamId = \Input::get('steamid');
@@ -22,11 +27,14 @@ class MicrotransactionController extends \Controller {
 		$items_raw = \Input::get('items');
 		//Convert the items list to JSON
 		$items_json = json_decode($items_raw);
-		//Convert the items Json to an item object
-		$item = new \Item((object)['itemid'=>$items_json->{'itemid'}, 'qty'=>$items_json->{'qty'}, 'amount'=>$items_json->{'amount'}, 'description'=>$items_json->{'description'}, 'category'=>$items_json->{'category'}]);
-		//add each item to the items list
-		$items = new \Collection();
-		$items->add($item);
+		$items = new Collection();
+		//Convert the items Json to an item object and add each item to the items list
+		foreach ($items_json as $item)
+		{
+			$item = new Item((object)['itemid'=>$item->{'itemid'}, 'qty'=>$item->{'qty'}, 'amount'=>$item->{'amount'}, 'description'=>$item->{'description'}, 'category'=>$item->{'category'}]);
+			$items->add($item);
+		}
+		
 
 		$itemCount = $items->count();
 
@@ -58,7 +66,7 @@ class MicrotransactionController extends \Controller {
 		else
 		{
 			//failure
-			return "Steam error code: " . $response->error->errorcode . "/n Error description: " . $response->error->errordesc;
+			return json_encode($response);//"Steam error code: " . $response->error->errorcode . "/n Error description: " . $response->error->errordesc;
 		}
 	}
 
@@ -80,7 +88,7 @@ class MicrotransactionController extends \Controller {
 		else
 		{
 			//failure
-			return "Steam error code: " . $response->error->errorcode . "/n Error description: " . $response->error->errordesc;
+			return json_encode($response);//"Steam error code: " . $response->error->errorcode . "/n Error description: " . $response->error->errordesc;
 		}		
 	}
 }
