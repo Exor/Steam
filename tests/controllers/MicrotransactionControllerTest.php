@@ -4,11 +4,9 @@ class MicrotransactionControllerTest extends TestCase {
 
 public function testCanStartAndFinishMicrotransactionWithValidParameters()
 {
+    //
     $response = $this->call('POST', 'initTxn', array(
-        'steamid' => '76561197977832396',
-        'items' => '[{"itemid":"123456", "qty":"1", "amount":"199", "description":"Red Hat", "category":"hats"}]',
-        'language' => 'EN',
-        'currency' => 'USD'
+        'order' => '{"orderid":0,"transid":0,"errorcode":0,"errordescription":null,"language":"EN","currency":"USD","steamid":76561197977832396,"items":[{"itemid":123456,"qty":1,"amount":199,"description":"Red Hat","category":"hats"}]}'
         )   
     );
 

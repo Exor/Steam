@@ -22,11 +22,14 @@ class MicrotransactionController extends \Controller {
 				{$records = \SteamApi_Order::where('orderid', $orderId)->count();}
 		}
 
-		$steamId = \Input::get('steamid');
+		$order = \Input::get('order');
+		$order = json_decode($order);
 
-		$items_raw = \Input::get('items');
+		$steamId = $order->steamid;
+
+		$items_json = $order->items;
 		//Convert the items list to JSON
-		$items_json = json_decode($items_raw);
+		//$items_json = json_decode($items_raw);
 		$items = new Collection();
 		//Convert the items Json to an item object and add each item to the items list
 		foreach ($items_json as $item)
@@ -34,13 +37,10 @@ class MicrotransactionController extends \Controller {
 			$item = new Item((object)['itemid'=>$item->{'itemid'}, 'qty'=>$item->{'qty'}, 'amount'=>$item->{'amount'}, 'description'=>$item->{'description'}, 'category'=>$item->{'category'}]);
 			$items->add($item);
 		}
-		
 
 		$itemCount = $items->count();
-
-
-		$language = \Input::get('language');
-		$currency = \Input::get('currency');
+		$language = $order->language;
+		$currency = $order->currency;
 		
 		//Call ISteamMicroTxn/InitTxn
 		
@@ -53,13 +53,13 @@ class MicrotransactionController extends \Controller {
 
 			//Save data to the orders table
 			if (\Config::get('steam-api::testEnvironment'))
-				{$order = new \SteamApi_Order_Test;}
+				{$steamOrder = new \SteamApi_Order_Test;}
 			else
-				{$order = new \SteamApi_Order;}
-			$order->orderid = $response->params->orderid;
-			$order->steamid = $steamId;
-			$order->transid = $response->params->transid;
-			$order->save();
+				{$steamOrder = new \SteamApi_Order;}
+			$steamOrder->orderid = $response->params->orderid;
+			$steamOrder->steamid = $steamId;
+			$steamOrder->transid = $response->params->transid;
+			$steamOrder->save();
 
 			return json_encode($response);
 		}
