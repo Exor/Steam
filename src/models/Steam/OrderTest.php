@@ -1,6 +1,6 @@
 <?php
 
-class SteamApi_Order_Test extends \BaseModel
+class SteamApi_Order_Test extends \Eloquent
 {
 	/********************************************************************
 	 * Declarations
