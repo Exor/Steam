@@ -4,6 +4,7 @@ class AppTest extends TestCase {
 
 	public function setUp()
 	{
+		parent::setUp();
 		$this->app = Steam::app();
 	}
 

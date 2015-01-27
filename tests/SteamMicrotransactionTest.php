@@ -6,6 +6,7 @@ class MicrotransactionTest extends TestCase {
 
 	public function setUp()
 	{
+		parent::setUp();
 		$this->microtxn = Steam::Microtransaction();
 	}
 

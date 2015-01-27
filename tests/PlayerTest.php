@@ -4,6 +4,7 @@ class PlayerTest extends TestCase {
 
 	public function setUp()
 	{
+		parent::setUp();
 		$this->player = Steam::player('76561197977832396'); //My profile. Privacy settings are set to public
 	}
 

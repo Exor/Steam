@@ -4,6 +4,7 @@ class OrderTest extends TestCase {
 
 public function setUp()
 {
+	parent::setUp();
 	$this->order = new SteamApi_Order_Test();
 	$this->order->orderid = "01234567890123456789";
   	$this->order->transid = "01234567890123456789";
