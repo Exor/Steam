@@ -10,8 +10,8 @@ class MicrotransactionController extends \Controller {
 
 		$microtxn = \Steam::microtransaction();
 
+		// create an order ID. If order ID already exists in the database, we need a new order id
 		$records = 1;
-		//If order exists in the database, we need a new order id
 		while ($records == 1)
 		{
 			$orderId = mt_rand(1000000000, mt_getrandmax()) + mt_rand(1000000000, mt_getrandmax());
@@ -22,16 +22,16 @@ class MicrotransactionController extends \Controller {
 				{$records = \SteamApi_Order::where('orderid', $orderId)->count();}
 		}
 
+		//Get the order and set up inputs
 		$order = \Input::get('order');
 		$order = json_decode($order);
-
 		$steamId = $order->steamid;
-
+		$language = $order->language;
+		$currency = $order->currency;
+		
+		//Add the items to an item object
 		$items_json = $order->items;
-		//Convert the items list to JSON
-		//$items_json = json_decode($items_raw);
 		$items = new Collection();
-		//Convert the items Json to an item object and add each item to the items list
 		foreach ($items_json as $item)
 		{
 			$item = new Item((object)['itemid'=>$item->{'itemid'}, 'qty'=>$item->{'qty'}, 'amount'=>$item->{'amount'}, 'description'=>$item->{'description'}, 'category'=>$item->{'category'}]);
@@ -39,11 +39,9 @@ class MicrotransactionController extends \Controller {
 		}
 
 		$itemCount = $items->count();
-		$language = $order->language;
-		$currency = $order->currency;
+
 		
 		//Call ISteamMicroTxn/InitTxn
-		
 		$response = $microtxn->InitTxn($orderId, $steamId, $itemCount, $language, $currency, $items);
 		
 		//Output
@@ -61,13 +59,23 @@ class MicrotransactionController extends \Controller {
 			$steamOrder->transid = $response->params->transid;
 			$steamOrder->save();
 
-			return json_encode($response);
+			//Add order ID and transaction ID to the object
+			$order->response = $response->result;
+			$order->transid = $response->params->transid;
+			$order->orderid = $response->params->orderid;
+
+			//Return the object
+			return json_encode($order);
 		}
-		else
+		else if ($response->result == "Failure")
 		{
 			//failure
-			return json_encode($response);//"Steam error code: " . $response->error->errorcode . "/n Error description: " . $response->error->errordesc;
+			$order->response = $response->result;
+			$order->errorcode = $response->error->errorcode;
+			$order->errordesc = $response->error->errordesc;
+			return json_encode($order);
 		}
+		return json_encode($response);
 	}
 
 	public function FinishMicrotransaction()
@@ -83,12 +91,13 @@ class MicrotransactionController extends \Controller {
 			//success
 
 			//TODO: Grant the user the items they bought??
-			return json_encode($response);
+			return json_encode(array('response' => $response->result));
 		}
-		else
+		else if ($response->result == 'Failure')
 		{
 			//failure
-			return json_encode($response);//"Steam error code: " . $response->error->errorcode . "/n Error description: " . $response->error->errordesc;
+			return json_encode(array('response' => $response->result, 'errorcode' => $response->error->errorcode, 'errordesc' => $response->error->errordesc));
 		}		
+		return json_encode($response);
 	}
 }
