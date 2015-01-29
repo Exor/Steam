@@ -100,4 +100,48 @@ class MicrotransactionController extends \Controller {
 		}		
 		return json_encode($response);
 	}
+
+	public function RefundMicrotransaction()
+	{
+		$microtxn = \Steam::microtransaction();
+
+		$orderId = \Input::get('orderid');
+
+		$response = $microtxn->RefundTxn($orderId);
+		
+		if ($response->result == 'OK')
+		{
+			//success
+			return json_encode(array('response' => $response->result));
+		}
+		else if ($response->result == 'Failure')
+		{
+			//failure
+			return json_encode(array('response' => $response->result, 'errorcode' => $response->error->errorcode, 'errordesc' => $response->error->errordesc));
+		}		
+		return json_encode($response);
+	}
+
+	public function GetMicrotransactionReport()
+	{
+		$microtxn = \Steam::microtransaction();
+
+		$type = \Input::get('type');
+		$time = \Input::get('time');
+		$maxResults = \Input::get('maxResults');
+
+		$response = $microtxn->GetReport($type, $time, $maxResults);
+		
+		if ($response->result == 'OK')
+		{
+			//success
+			return json_encode($response);
+		}
+		else if ($response->result == 'Failure')
+		{
+			//failure
+			return json_encode(array('response' => $response->result, 'errorcode' => $response->error->errorcode, 'errordesc' => $response->error->errordesc));
+		}		
+		return json_encode($response);
+	}	
 }
