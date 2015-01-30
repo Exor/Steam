@@ -13,15 +13,15 @@ public function testCanStartAndFinishMicrotransactionWithValidParameters()
     $this->assertTrue($this->client->getResponse()->isOk());
     $content = $this->client->getResponse()->getContent();
     $content = json_decode($content);
-    $this->assertEquals('OK', $content->result);
+    $this->assertEquals('OK', $content->response, json_encode($content));
 
     //Get the order from the database
     $order = \SteamApi_Order_Test::where('steamid', '76561197977832396')->first();
 
     //Check the order
     $this->assertFalse(is_null($order));
-    $this->assertEquals($content->params->transid, $order->transid);
-    $this->assertEquals($content->params->orderid, $order->orderid);
+    $this->assertEquals($content->transid, $order->transid);
+    $this->assertEquals($content->orderid, $order->orderid);
 
     //Finalize the order
     $response = $this->call('POST', 'finalizeTxn', array(
@@ -34,10 +34,9 @@ public function testCanStartAndFinishMicrotransactionWithValidParameters()
     $content = json_decode($content);
 
     //Finalize will always fail since it requires user interaction to approve the transaction
-    $this->assertEquals('Failure', $content->result, json_encode($content));
-    $this->assertEquals('5', $content->error->errorcode);
-    $this->assertEquals($content->params->transid, $order->transid);
-    $this->assertEquals($content->params->orderid, $order->orderid);
+    $this->assertEquals('Failure', $content->response, json_encode($content));
+    $this->assertEquals('5', $content->errorcode);
+    $this->assertEquals('User has not approved transaction', $content->errordesc);
 }
 
 }

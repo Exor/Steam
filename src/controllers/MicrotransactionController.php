@@ -65,8 +65,7 @@ class MicrotransactionController extends \Controller {
 			$order->orderid = $response->params->orderid;
 
 			//Return the object
-			$json = $this->RemoveLeadingSlash(json_encode($order));
-			return json_encode($json);
+			return json_encode($order);
 		}
 		else if ($response->result == "Failure")
 		{
@@ -144,14 +143,5 @@ class MicrotransactionController extends \Controller {
 			return json_encode(array('response' => $response->result, 'errorcode' => $response->error->errorcode, 'errordesc' => $response->error->errordesc));
 		}		
 		return json_encode($response);
-	}
-
-	private function RemoveLeadingSlash($json)
-	{
-		if (substr($json, 0, 1) == '\\')
-		{
-			return substr($json, 1);
-		}
-		return $json;
 	}
 }
