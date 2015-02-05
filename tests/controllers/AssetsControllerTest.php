@@ -12,6 +12,16 @@ public function setUp()
     $this->item->price = 199;
     $this->item->version = 1.004;
     $this->assertTrue($this->item->save());
+
+    $this->unlock = new SteamApi_Unlock();
+    $this->unlock->steamid = "123456";
+    $this->unlock->uuid = "01234567890123456789";
+    $this->assertTrue($this->unlock->save());    
+
+    $this->unlock2 = new SteamApi_Unlock();
+    $this->unlock2->steamid = "123456";
+    $this->unlock2->uuid = "9876543210";
+    $this->assertTrue($this->unlock2->save());  
 }
 
 public function tearDown()
@@ -27,8 +37,18 @@ public function testCanGetAssetManifest()
     $this->assertTrue($this->client->getResponse()->isOk());
     $manifest = $this->client->getResponse()->getContent();
     $manifest = json_decode($manifest);
-    $this->assertEquals('OK', $manifest->response, json_encode($manifest));
-    $this->assertEquals($this->item->uuid, $manifest->items[0]->uuid, json_encode($manifest));
+    $this->assertEquals('OK', $manifest->response);
+    $this->assertEquals($this->item->uuid, $manifest->items[0]->uuid);
 }
 
+public function testCanGetUnlockedItems()
+{
+    $response = $this->call('POST', 'getUnlockedItems',array('steamid' => '123456'));
+
+    $this->assertTrue($this->client->getResponse()->isOk());
+    $unlocks_table = $this->client->getResponse()->getContent();
+    $unlocks_table = json_decode($unlocks_table);
+    $this->assertEquals('OK', $unlocks_table->response);
+    $this->assertEquals($this->unlock->uuid, $unlocks_table->unlocks[0]);
+}
 }
