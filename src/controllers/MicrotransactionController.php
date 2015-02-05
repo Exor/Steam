@@ -7,7 +7,6 @@ class MicrotransactionController extends \Controller {
 
 	public function StartMicrotransaction()
 	{
-
 		$microtxn = \Steam::microtransaction();
 
 		// create an order ID. If order ID already exists in the database, we need a new order id
@@ -23,6 +22,8 @@ class MicrotransactionController extends \Controller {
 		$order = \Input::get('order');
 		$order = json_decode($order);
 		$steamId = $order->steamid;
+		//Since this will likely be the first entrypoint for many users check to see if there is an existing entry, otherwise create one.
+		\SteamApi_User::firstOrCreate(array('steamid' => $steamId));		
 		$language = $order->language;
 		$currency = $order->currency;
 		
@@ -53,7 +54,13 @@ class MicrotransactionController extends \Controller {
 			$steamOrder->transid = $response->params->transid;
 			$steamOrder->save();
 
-			//Add order ID and transaction ID to the object
+			//Add the items to the order just for reference
+			foreach ($items as $item)
+			{
+				$steamOrder->items()->attach($item->itemid);
+			}
+
+			//Add order ID and transaction ID to the order to be returned
 			$order->response = $response->result;
 			$order->transid = $response->params->transid;
 			$order->orderid = $response->params->orderid;

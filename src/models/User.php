@@ -7,6 +7,7 @@ class SteamApi_User extends \Eloquent
 	 *******************************************************************/
 	protected $table = 'steamapi_users';
 	protected $primaryKey = 'steamid';
+	protected $fillable = array('steamid');
 
 	/********************************************************************
 	 * Validation rules
