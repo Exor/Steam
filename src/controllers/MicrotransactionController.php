@@ -84,7 +84,14 @@ class MicrotransactionController extends \Controller {
 		{
 			//success
 
-			//TODO: Grant the user the items they bought??
+			//Grant the user the items they bought
+			$user = \SteamApi_Order::find($orderId)->user;
+			$items = \SteamApi_Order::find($orderId)->items;
+			foreach ($items as $item)
+			{
+				$user->items()->attach($item->uuid);
+			}
+
 			return json_encode(array('response' => $response->result));
 		}
 		else if ($response->result == 'Failure')
