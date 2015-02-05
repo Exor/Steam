@@ -18,12 +18,14 @@ class SteamApi_Order extends \Eloquent
 	 */
 	public static $rules = array(
 		'orderid' => 'unique:steamapi_orders',
-		'transid'  => 'unique:steamapi_orders'
+		'transid' => 'unique:steamapi_orders',
+		'steamid' => 'required'
 	);
 
 	/********************************************************************
 	 * Relationships
 	 *******************************************************************/
+	public function user() { return $this->belongsTo('SteamApi_User', 'steamid'); } //Order has one User
 
 	/********************************************************************
 	 * Getter and Setter methods

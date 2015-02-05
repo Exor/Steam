@@ -1,6 +1,6 @@
 <?php
 
-class SteamApi_Unlock extends \Eloquent
+class SteamApi_User extends \Eloquent
 {
 	/********************************************************************
 	 * Declarations
@@ -8,7 +8,7 @@ class SteamApi_Unlock extends \Eloquent
 	protected $table = 'steamapi_users';
 
 	/********************************************************************
-	 * Aware validation rules
+	 * Validation rules
 	 *******************************************************************/
 	public static $rules = array(
 		'steamid'  => 'required'
@@ -17,6 +17,7 @@ class SteamApi_Unlock extends \Eloquent
 	/********************************************************************
 	 * Relationships
 	 *******************************************************************/
+    public function orders() { return $this->hasMany('SteamApi_Order', 'steamid', 'steamid'); } //User has many orders
 
 	/********************************************************************
 	 * Getter and Setter methods
