@@ -1,24 +1,21 @@
 <?php
 
-class SteamApi_Order extends \Eloquent
+class SteamApi_Item extends \Eloquent
 {
 	/********************************************************************
 	 * Declarations
 	 *******************************************************************/
-	protected $table = 'steamapi_orders';
+	protected $table = 'steamapi_items';
 
 	/********************************************************************
 	 * Aware validation rules
 	 *******************************************************************/
-	/**
-	 * Validation rules
-	 *
-	 * @static
-	 * @var array $rules All rules this model must follow
-	 */
 	public static $rules = array(
-		'orderid' => 'unique:steamapi_orders',
-		'transid'  => 'unique:steamapi_orders'
+		'uuid' => 'required',
+		'name'  => 'required',
+		'description'  => 'required',
+		'price'  => 'required',
+		'version'  => 'required'
 	);
 
 	/********************************************************************
