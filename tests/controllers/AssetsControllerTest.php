@@ -5,6 +5,8 @@ class AssetsControllerTest extends TestCase {
 public function setUp()
 {
     parent::setUp();
+
+    //Create an Item
     $this->item = new SteamApi_Item();
     $this->item->uuid = "01234567890123456789";
     $this->item->name = "Red Hat";
@@ -13,21 +15,19 @@ public function setUp()
     $this->item->version = 1.004;
     $this->assertTrue($this->item->save());
 
-    $this->unlock = new SteamApi_Unlock();
-    $this->unlock->steamid = "123456";
-    $this->unlock->uuid = "01234567890123456789";
-    $this->assertTrue($this->unlock->save());    
+    //Create a User
+    $this->user = new SteamApi_User();
+    $this->user->steamid = '1234567890';
+    $this->assertTrue($this->user->save());
 
-    $this->unlock2 = new SteamApi_Unlock();
-    $this->unlock2->steamid = "123456";
-    $this->unlock2->uuid = "9876543210";
-    $this->assertTrue($this->unlock2->save());  
+    //Give the item to the User
+    $this->user->items()->attach($this->item->uuid);
 }
 
 public function tearDown()
 {
-    $items = SteamApi_Item::all();
-    foreach($items as $item) {$item->delete();}
+    $users = SteamApi_User::all();
+    foreach($users as $user) {$user->delete();}
 }
 
 public function testCanGetAssetManifest()
@@ -43,12 +43,12 @@ public function testCanGetAssetManifest()
 
 public function testCanGetUnlockedItems()
 {
-    $response = $this->call('POST', 'getUnlockedItems',array('steamid' => '123456'));
+    $response = $this->call('POST', 'getUnlockedItems',array('steamid' => $this->user->steamid));
 
     $this->assertTrue($this->client->getResponse()->isOk());
     $unlocks_table = $this->client->getResponse()->getContent();
     $unlocks_table = json_decode($unlocks_table);
     $this->assertEquals('OK', $unlocks_table->response);
-    $this->assertEquals($this->unlock->uuid, $unlocks_table->unlocks[0]);
+    $this->assertEquals($this->item->uuid, $unlocks_table->unlocks[0]);
 }
 }

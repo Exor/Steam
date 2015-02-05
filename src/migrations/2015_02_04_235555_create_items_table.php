@@ -14,14 +14,14 @@ class CreateItemsTable extends Migration {
 	{
 	    Schema::create('steamapi_items', function($table)
 	    {
-			$table->bigIncrements('id');
 			$table->bigInteger('uuid')->unsigned();
 			$table->string('name');
 			$table->string('description');
 			$table->integer('price')->unsigned();
 		    $table->double('version')->unsigned();
-
 		    $table->timestamps();
+
+		    $table->primary('uuid');
 	    });
 	}
 

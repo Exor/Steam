@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserUnlocksTable extends Migration {
+class CreateItemsOrdersTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,11 +12,11 @@ class CreateUserUnlocksTable extends Migration {
 	 */
 	public function up()
 	{
-	    Schema::create('steamapi_unlocks', function($table)
+	    Schema::create('steamapi_items_orders', function($table)
 	    {
 			$table->bigIncrements('id');
-			$table->bigInteger('steamid')->unsigned();
 			$table->bigInteger('uuid')->unsigned();
+			$table->bigInteger('orderid')->unsigned();
 
 		    $table->timestamps();
 	    });
@@ -29,7 +29,7 @@ class CreateUserUnlocksTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('steamapi_unlocks');
+		Schema::drop('steamapi_items_orders');
 	}
 
 }

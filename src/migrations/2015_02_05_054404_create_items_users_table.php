@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration {
+class CreateItemsUsersTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,13 +12,13 @@ class CreateUsersTable extends Migration {
 	 */
 	public function up()
 	{
-	    Schema::create('steamapi_users', function($table)
+	    Schema::create('steamapi_items_users', function($table)
 	    {
+			$table->bigIncrements('id');
+			$table->bigInteger('uuid')->unsigned();
 			$table->bigInteger('steamid')->unsigned();
 
 		    $table->timestamps();
-
-		    $table->primary('steamid');
 	    });
 	}
 
@@ -29,7 +29,7 @@ class CreateUsersTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('steamapi_users');
+		Schema::drop('steamapi_items_users');
 	}
 
 }

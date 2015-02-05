@@ -5,7 +5,7 @@ class OrderTest extends TestCase {
 public function setUp()
 {
 	parent::setUp();
-	$this->order = new SteamApi_Order_Test();
+	$this->order = new SteamApi_Order();
 	$this->order->orderid = "01234567890123456789";
   	$this->order->transid = "01234567890123456789";
   	$this->order->steamid = "01234567890123456789";
@@ -13,7 +13,7 @@ public function setUp()
 
 public function tearDown()
 {
-	$orders = SteamApi_Order_Test::all();
+	$orders = SteamApi_Order::all();
 	foreach($orders as $order) {$order->delete();}
 }
 

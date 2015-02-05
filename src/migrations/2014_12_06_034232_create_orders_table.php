@@ -14,27 +14,15 @@ class CreateOrdersTable extends Migration {
 	{
 	    Schema::create('steamapi_orders', function($table)
 	    {
-			$table->bigIncrements('id');
 			$table->bigInteger('orderid')->unsigned();
 			$table->bigInteger('transid')->unsigned();
 		    $table->bigInteger('steamid')->unsigned();
 		    $table->timestamps();
-
-		    $table->unique('orderid');
+		    
 		    $table->unique('transid');
+
+		    $table->primary('orderid');
 	    });
-
-	    Schema::create('steamapi_orders_test', function($table)
-	    {
-			$table->bigIncrements('id');
-			$table->bigInteger('orderid')->unsigned();
-			$table->bigInteger('transid')->unsigned();
-		    $table->bigInteger('steamid')->unsigned();
-		    $table->timestamps();
-
-		    $table->unique('orderid');
-		    $table->unique('transid');
-	    });	    
 	}
 
 	/**

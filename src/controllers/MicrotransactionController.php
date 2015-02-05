@@ -16,10 +16,7 @@ class MicrotransactionController extends \Controller {
 		{
 			$orderId = mt_rand(1000000000, mt_getrandmax()) + mt_rand(1000000000, mt_getrandmax());
 
-			if (\Config::get('steam-api::testEnvironment'))
-				{$records = \SteamApi_Order_Test::where('orderid', $orderId)->count();}
-			else
-				{$records = \SteamApi_Order::where('orderid', $orderId)->count();}
+			$records = \SteamApi_Order::where('orderid', $orderId)->count();
 		}
 
 		//Get the order and set up inputs
@@ -50,10 +47,7 @@ class MicrotransactionController extends \Controller {
 			//success
 
 			//Save data to the orders table
-			if (\Config::get('steam-api::testEnvironment'))
-				{$steamOrder = new \SteamApi_Order_Test;}
-			else
-				{$steamOrder = new \SteamApi_Order;}
+			$steamOrder = new \SteamApi_Order;
 			$steamOrder->orderid = $response->params->orderid;
 			$steamOrder->steamid = $steamId;
 			$steamOrder->transid = $response->params->transid;

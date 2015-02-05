@@ -12,14 +12,14 @@ class AssetsController extends \Controller {
 	public function GetUnlockedItems()
 	{
 		$steamid = \Input::get('steamid');
-		$unlocks = \SteamApi_Unlock::where('steamid', $steamid)->get();
+		$unlockedItems = \SteamApi_User::find($steamid)->items;
 		
 		$uuids = [];
-		foreach ($unlocks as $unlock)
+		foreach ($unlockedItems as $item)
 		{
-			$uuids[] = $unlock->uuid;
+			$uuids[] = $item->uuid;
 		}
-		$statement = ['response' => 'OK', 'unlocks' => $uuids];
-		return json_encode($statement);
+		$unlockTable = ['response' => 'OK', 'unlocks' => $uuids];
+		return json_encode($unlockTable);
 	}
 }
