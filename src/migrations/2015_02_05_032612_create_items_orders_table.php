@@ -20,8 +20,8 @@ class CreateItemsOrdersTable extends Migration {
 
 		    $table->timestamps();
 
-		    $table->foreign('uuid')->references('uuid')->on('steamapi_items');
-          	$table->foreign('orderid')->references('orderid')->on('steamapi_orders');
+		    $table->foreign('uuid')->references('uuid')->on('steamapi_items')->onDelete('cascade');
+          	$table->foreign('orderid')->references('orderid')->on('steamapi_orders')->onDelete('cascade');
 	    });
 	}
 

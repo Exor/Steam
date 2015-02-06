@@ -54,10 +54,12 @@ class MicrotransactionController extends \Controller {
 			$steamOrder->transid = $response->params->transid;
 			$steamOrder->save();
 
+			//For some reason we need to pull this out of the database for the attach() to work properly
+			$Order = \SteamApi_Order::find($response->params->orderid);
 			//Add the items to the order just for reference
 			foreach ($items as $item)
 			{
-				$steamOrder->items()->attach($item->itemId, array('orderid' => $steamOrder->orderid));
+				$Order->items()->attach($item->itemId);
 			}
 
 			//Add order ID and transaction ID to the order to be returned
