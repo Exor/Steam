@@ -24,4 +24,24 @@ class AssetsController extends \Controller {
 		$unlockTable = ['response' => 'OK', 'unlocks' => $uuids];
 		return json_encode($unlockTable);
 	}
+
+	public function UploadAssetManifest()
+	{
+		$manifest = \Input::get('manifest');
+		$manifest = json_decode($manifest);
+
+		foreach ($manifest->Items as $manifestItem)
+		{
+			$item = \SteamApi_Item::firstOrNew(array('uuid' => $manifestItem->uuid));
+			$item->uuid = $manifestItem->uuid;
+			$item->name = $manifestItem->name;
+			$item->description = $manifestItem->description;
+			$item->price = $manifestItem->price;
+			$item->version = $manifestItem->version;
+			$item->save();
+		}
+
+
+		return json_encode(['response' => 'OK']);
+	}
 }

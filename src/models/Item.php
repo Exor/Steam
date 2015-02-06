@@ -7,6 +7,7 @@ class SteamApi_Item extends \Eloquent
 	 *******************************************************************/
 	protected $table = 'steamapi_items';
 	protected $primaryKey = 'uuid';
+	protected $fillable = array('uuid, name, description, price, version');
 
 	/********************************************************************
 	 * Aware validation rules

@@ -33,6 +33,7 @@ Route::post('finalizeTxn', 'AbyssalArts\SteamApi\Controllers\MicrotransactionCon
 
 //Asset Manifest
 Route::get('getAssetManifest', 'AbyssalArts\SteamApi\Controllers\AssetsController@GetAssetManifest');
+Route::post('uploadAssetManifest', 'AbyssalArts\SteamApi\Controllers\AssetsController@UploadAssetManifest');
 
 //Unlock Table
 Route::post('getUnlockedItems', 'AbyssalArts\SteamApi\Controllers\AssetsController@GetUnlockedItems');
