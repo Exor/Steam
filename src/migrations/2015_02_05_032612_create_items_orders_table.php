@@ -19,6 +19,9 @@ class CreateItemsOrdersTable extends Migration {
 			$table->bigInteger('orderid')->unsigned();
 
 		    $table->timestamps();
+
+		    $table->foreign('uuid')->references('uuid')->on('steamapi_items');
+          	$table->foreign('orderid')->references('orderid')->on('steamapi_orders');
 	    });
 	}
 

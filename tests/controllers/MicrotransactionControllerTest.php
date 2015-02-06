@@ -16,7 +16,7 @@ public function testCanStartAndFinishMicrotransactionWithValidParameters()
     $this->assertEquals('OK', $content->response, json_encode($content));
 
     //Get the order from the database
-    $order = \SteamApi_Order_Test::where('steamid', '76561197977832396')->first();
+    $order = \SteamApi_Order::where('steamid', '76561197977832396')->first();
 
     //Check the order
     $this->assertFalse(is_null($order));

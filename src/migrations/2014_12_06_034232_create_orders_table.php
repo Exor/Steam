@@ -33,7 +33,6 @@ class CreateOrdersTable extends Migration {
 	public function down()
 	{
 		Schema::drop('steamapi_orders');
-		Schema::drop('steamapi_orders_test');
 	}
 
 }

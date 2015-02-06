@@ -23,7 +23,7 @@ class MicrotransactionController extends \Controller {
 		$order = json_decode($order);
 		$steamId = $order->steamid;
 		//Since this will likely be the first entrypoint for many users check to see if there is an existing entry, otherwise create one.
-		\SteamApi_User::firstOrCreate(array('steamid' => $steamId));		
+		\SteamApi_User::firstOrCreate(array('steamid' => $steamId));
 		$language = $order->language;
 		$currency = $order->currency;
 		
@@ -48,7 +48,7 @@ class MicrotransactionController extends \Controller {
 			//success
 
 			//Save data to the orders table
-			$steamOrder = new \SteamApi_Order;
+			$steamOrder = new \SteamApi_Order();
 			$steamOrder->orderid = $response->params->orderid;
 			$steamOrder->steamid = $steamId;
 			$steamOrder->transid = $response->params->transid;
@@ -57,7 +57,7 @@ class MicrotransactionController extends \Controller {
 			//Add the items to the order just for reference
 			foreach ($items as $item)
 			{
-				$steamOrder->items()->attach($item->itemid);
+				$steamOrder->items()->attach($item->itemId, array('orderid' => $steamOrder->orderid));
 			}
 
 			//Add order ID and transaction ID to the order to be returned
