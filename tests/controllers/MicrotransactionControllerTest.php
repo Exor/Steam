@@ -4,9 +4,22 @@ class MicrotransactionControllerTest extends TestCase {
 
 public function testCanStartAndFinishMicrotransactionWithValidParameters()
 {
-    //
+    $order = '{"orderid":0,"transid":0,"errorcode":0,"errordescription":null,"language":"EN","currency":"USD","steamid":76561197977832396,"items":[{"itemid":123456,"qty":1,"amount":199,"description":"Red Hat","category":"hats"}]}';
+
+    //No key should fail
     $response = $this->call('POST', 'initTxn', array(
-        'order' => '{"orderid":0,"transid":0,"errorcode":0,"errordescription":null,"language":"EN","currency":"USD","steamid":76561197977832396,"items":[{"itemid":123456,"qty":1,"amount":199,"description":"Red Hat","category":"hats"}]}'
+        'order' => $order
+        )   
+    );
+    $this->assertTrue($this->client->getResponse()->isOk());
+    $content = $this->client->getResponse()->getContent();
+    $content = json_decode($content);
+    $this->assertEquals('Failure', $content->response);
+
+    //Valid key is sucessfull
+    $response = $this->call('POST', 'initTxn', array(
+        'order' => $order,
+        'key' => hash(\Config::get('steam-api::hashingAlgorithm'), \Config::get('steam-api::secretKey').$order)
         )   
     );
 

@@ -27,7 +27,14 @@ class AssetsController extends \Controller {
 
 	public function UploadAssetManifest()
 	{
+		//Get all the Inputs
 		$manifest = \Input::get('manifest');
+		$key = \Input::get('key');
+		if ($key != $this->ComputeHashKey($manifest))
+			{ return json_encode(['response' => 'Failure', 'errorcode' => '501', 'errordesc' => 'Invalid key']); }
+
+
+
 		$manifest = json_decode($manifest);
 
 		foreach ($manifest->Items as $manifestItem)
@@ -43,5 +50,10 @@ class AssetsController extends \Controller {
 
 
 		return json_encode(['response' => 'OK']);
+	}
+
+	private function ComputeHashKey($string)
+	{
+		return hash(\Config::get('steam-api::hashingAlgorithm'), \Config::get('steam-api::secretKey') . $string);
 	}
 }

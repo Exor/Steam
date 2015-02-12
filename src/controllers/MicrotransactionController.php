@@ -7,6 +7,13 @@ class MicrotransactionController extends \Controller {
 
 	public function StartMicrotransaction()
 	{
+		//Get the order and verify it is legit
+		$order = \Input::get('order');
+		$key = \Input::get('key');
+		if ($key != $this->ComputeHashKey($order))
+			{ return json_encode(['response' => 'Failure', 'errorcode' => '501', 'errordesc' => 'Invalid key']); }
+
+		//Set up the microtransaction
 		$microtxn = \Steam::microtransaction();
 
 		// create an order ID. If order ID already exists in the database, we need a new order id
@@ -18,8 +25,6 @@ class MicrotransactionController extends \Controller {
 			$records = \SteamApi_Order::where('orderid', $orderId)->count();
 		}
 
-		//Get the order and set up inputs
-		$order = \Input::get('order');
 		$order = json_decode($order);
 		$steamId = $order->steamid;
 		//Since this will likely be the first entrypoint for many users check to see if there is an existing entry, otherwise create one.
@@ -153,5 +158,10 @@ class MicrotransactionController extends \Controller {
 			return json_encode(array('response' => $response->result, 'errorcode' => $response->error->errorcode, 'errordesc' => $response->error->errordesc));
 		}		
 		return json_encode($response);
+	}
+
+	private function ComputeHashKey($string)
+	{
+		return hash(\Config::get('steam-api::hashingAlgorithm'), \Config::get('steam-api::secretKey') . $string);
 	}
 }
