@@ -18,6 +18,7 @@ public function setUp()
     //Create a User
     $this->user = new SteamApi_User();
     $this->user->steamid = '1234567890';
+    $this->user->xp = '999';
     $this->assertTrue($this->user->save());
 
     //Give the item to the User
@@ -50,6 +51,18 @@ public function testCanGetUnlockedItems()
     $unlocks_table = json_decode($unlocks_table);
     $this->assertEquals('OK', $unlocks_table->response);
     $this->assertEquals($this->item->uuid, $unlocks_table->unlocks[0]);
+}
+
+public function testXpIsReturnedWithUnlockedItems()
+{
+    $response = $this->call('POST', 'getUnlockedItems',array('steamid' => $this->user->steamid));
+
+    $this->assertTrue($this->client->getResponse()->isOk());
+    $unlocks_table = $this->client->getResponse()->getContent();
+    $unlocks_table = json_decode($unlocks_table);
+    $this->assertEquals('OK', $unlocks_table->response);
+    $this->assertEquals($this->user->xp, $unlocks_table->xp);   
+
 }
 
 public function testCanUploadAssetManifest()

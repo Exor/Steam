@@ -21,7 +21,7 @@ class AssetsController extends \Controller {
 		{
 			$uuids[] = $item->uuid;
 		}
-		$unlockTable = ['response' => 'OK', 'unlocks' => $uuids];
+		$unlockTable = ['response' => 'OK', 'unlocks' => $uuids, 'xp' => $user->xp];
 		return json_encode($unlockTable);
 	}
 
