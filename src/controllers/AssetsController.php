@@ -61,13 +61,13 @@ class AssetsController extends \Controller {
 		if ($key != $this->ComputeHashKey($steamid . $xp))
 			{ return json_encode(['response' => 'Failure', 'errorcode' => '501', 'errordesc' => 'Invalid key']); }
 
-		$user = \SteamApi_User::find($steamid);
+		$user = \SteamApi_User::firstOrCreate(array('steamid' => $steamid));
 		$user->xp = $xp;
 
 		if ($user->save())
 			{ return json_encode(['response' => 'OK']); }
 		else
-			{ return json_encode(['response' => 'Failure', 'errorcode' => '502', 'errordesc' => 'Steam ID not found']); }
+			{ return json_encode(['response' => 'Failure', 'errorcode' => '502', 'errordesc' => 'Database update error']); }
 
 	}
 
