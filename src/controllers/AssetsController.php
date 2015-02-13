@@ -52,6 +52,25 @@ class AssetsController extends \Controller {
 		return json_encode(['response' => 'OK']);
 	}
 
+	public function UploadAccountXp()
+	{
+		//Get all the Inputs
+		$steamid = \Input::get('steamid');
+		$xp = \Input::get('accountXP');
+		$key = \Input::get('key');
+		if ($key != $this->ComputeHashKey($steamid . $xp))
+			{ return json_encode(['response' => 'Failure', 'errorcode' => '501', 'errordesc' => 'Invalid key']); }
+
+		$user = \SteamApi_User::find($steamid);
+		$user->xp = $xp;
+
+		if ($user->save())
+			{ return json_encode(['response' => 'OK']); }
+		else
+			{ return json_encode(['response' => 'Failure', 'errorcode' => '502', 'errordesc' => 'Steam ID not found']); }
+
+	}
+
 	private function ComputeHashKey($string)
 	{
 		return hash(\Config::get('steam-api::hashingAlgorithm'), \Config::get('steam-api::secretKey') . $string);
