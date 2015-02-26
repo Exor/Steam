@@ -34,18 +34,21 @@ public function testWithNoInput()
     $this->assertCount(1, $this->crawler->filter('.alert:contains("Incorrect")'));
 }
 
-// public function testWithCorrectInput()
-// {
-//     $user = FactoryMuffin::create('User');
+public function testWithCorrectInput()
+{
+    $user = new SteamApi_Admin;
+    $user->username = 'admin';
+    $user->password = 'password';
+    $user->save();
 
-//     $form = $this->crawler->selectButton('Login')->form();
-//     $form['username'] = $user->username;
-//     $form['password'] = 'password';
-//     $this->client->submit($form);
+    $form = $this->crawler->selectButton('Login')->form();
+    $form['username'] = $user->username;
+    $form['password'] = 'password';
+    $this->client->submit($form);
 
-//     //Redirect success
-//     $this->assertTrue($this->client->getResponse()->isRedirect('http://localhost/users/' . $user->id), $this->client->getResponse());
-// }
+    //Redirect success
+    $this->assertTrue($this->client->getResponse()->isRedirect('http://localhost/dashboard/'), $this->client->getResponse());
+}
 
 // //cant access the login form after already logged in
 // public function testRedirectWhenLoggedIn()
