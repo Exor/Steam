@@ -19,6 +19,9 @@ class CreateItemsUsersTable extends Migration {
 			$table->bigInteger('steamid')->unsigned();
 
 		    $table->timestamps();
+
+		    $table->foreign('uuid')->references('uuid')->on('steamapi_items')->onDelete('cascade');
+          	$table->foreign('steamid')->references('steamid')->on('steamapi_users')->onDelete('cascade');
 	    });
 	}
 

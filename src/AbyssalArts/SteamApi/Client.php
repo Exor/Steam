@@ -124,7 +124,8 @@ class Client {
 
 			$result       = new stdClass();
 			$result->code = $response->getStatusCode();
-			$result->body = json_decode($response->getBody(true));
+			$body = preg_replace('/"orderid": (\d+)/', '"orderid": "$1"', $response->getBody(true));
+			$result->body = json_decode($body);
 
 		} catch (ClientErrorResponseException $e) {
 			throw new ApiCallFailedException($e->getResponse() . $e->getRequest(), $e->getResponse()->getStatusCode(), $e);
@@ -133,7 +134,7 @@ class Client {
 			throw new ApiCallFailedException('Api call failed to complete due to a server error.' . $e->getResponse() . $e->getRequest(), $e->getResponse()->getStatusCode(), $e);
 
 		} catch (Exception $e) {
-			throw new ApiCallFailedException($e->getMessage(), $e->getCode(), $e);
+			throw new ApiCallFailedException($e->getMessage() . $response->getBody(true), $e->getCode(), $e);
 
 		}
 

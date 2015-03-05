@@ -20,7 +20,26 @@ class MicrotransactionController extends \Controller {
 		$records = 1;
 		while ($records == 1)
 		{
-			$orderId = mt_rand(1000000000, mt_getrandmax()) + mt_rand(1000000000, mt_getrandmax());
+			//Generate a 19 digit id
+			$orderId = mt_rand(0, 9) .
+						mt_rand(0, 9) .
+						mt_rand(0, 9) .
+						mt_rand(0, 9) .
+						mt_rand(0, 9) .
+						mt_rand(0, 9) .
+						mt_rand(0, 9) .
+						mt_rand(0, 9) .
+						mt_rand(0, 9) .
+						mt_rand(0, 9) .
+						mt_rand(0, 9) .
+						mt_rand(0, 9) .
+						mt_rand(0, 9) .
+						mt_rand(0, 9) .
+						mt_rand(0, 9) .
+						mt_rand(0, 9) .
+						mt_rand(0, 9) .
+						mt_rand(0, 9) .
+						mt_rand(0, 9);
 
 			$records = \SteamApi_Order::where('orderid', $orderId)->count();
 		}
