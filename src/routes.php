@@ -39,3 +39,5 @@ Route::post('uploadAssetManifest', 'AbyssalArts\SteamApi\Controllers\AssetsContr
 //Unlock Table
 Route::post('getUnlockedItems', 'AbyssalArts\SteamApi\Controllers\AssetsController@GetUnlockedItems');
 Route::post('uploadAccountXp', 'AbyssalArts\SteamApi\Controllers\AssetsController@UploadAccountXp');
+Route::post('unlockItem', 'AbyssalArts\SteamApi\Controllers\AssetsController@UnlockItem');
+Route::post('unlockItemWithXp', 'AbyssalArts\SteamApi\Controllers\AssetsController@UnlockItemWithXp');

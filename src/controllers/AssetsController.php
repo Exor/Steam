@@ -15,7 +15,7 @@ class AssetsController extends \Controller {
 		//Since this will likely be the first entrypoint for many users check to see if there is an existing entry, otherwise create one.
 		$user = \SteamApi_User::firstOrCreate(array('steamid' => $steamid));
 		$unlockedItems = $user->items;
-		
+
 		$uuids = [];
 		foreach ($unlockedItems as $item)
 		{
@@ -69,6 +69,61 @@ class AssetsController extends \Controller {
 		else
 			{ return json_encode(['response' => 'Failure', 'errorcode' => '502', 'errordesc' => 'Database update error']); }
 
+	}
+
+	public function UnlockItem()
+	{
+		//Get the inputs
+		$steamid = \Input::get('steamid');
+		$item_uuid = \Input::get('uuid');
+		$key = \Input::get('key');
+
+		//Check that the key matches
+		if ($key != $this->ComputeHashKey($steamid . $item_uuid))
+			{ return json_encode(['response' => 'Failure', 'errorcode' => '501', 'errordesc' => 'Invalid key']); }
+
+		$user = \SteamApi_User::firstOrCreate(array('steamid' => $steamid));
+
+		$countBefore = $user->items()->count();
+		$user->items()->attach($item_uuid);
+		$countAfter = $user->items()->count();
+
+		if ($countBefore < $countAfter)
+			{ return json_encode(['response' => 'OK']); }
+		else
+			{ return json_encode(['response' => 'Failure', 'errorcode' => '502', 'errordesc' => 'Database update error']); }
+	}
+
+	public function UnlockItemWithXp()
+	{
+		//Get the inputs
+		$steamid = \Input::get('steamid');
+		$item_uuid = \Input::get('uuid');
+		$cost = \Input::get('xp');
+		$key = \Input::get('key');
+
+		//Check that the key matches
+		if ($key != $this->ComputeHashKey($steamid . $item_uuid . $cost))
+			{ return json_encode(['response' => 'Failure', 'errorcode' => '501', 'errordesc' => 'Invalid key']); }
+
+		$user = \SteamApi_User::firstOrCreate(array('steamid' => $steamid));
+
+		if ($user->xp < $cost)
+			{ return json_encode(['response' => 'Failure', 'errorcode' => '503', 'errordesc' => 'User does not have enough experience to unlock the item']); }
+
+		//Subtract the cost
+		$user->xp -= $cost;
+		if (!$user->save())
+			{ return json_encode(['response' => 'Failure', 'errorcode' => '502', 'errordesc' => 'Database update error']); }
+
+		$countBefore = $user->items()->count();
+		$user->items()->attach($item_uuid);
+		$countAfter = $user->items()->count();
+
+		if ($countBefore < $countAfter)
+			{ return json_encode(['response' => 'OK']); }
+		else
+			{ return json_encode(['response' => 'Failure', 'errorcode' => '502', 'errordesc' => 'Database update error']); }
 	}
 
 	private function ComputeHashKey($string)
